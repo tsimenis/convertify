@@ -1,42 +1,5 @@
-html {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-body {
-  @apply font-primary text-black;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  @apply font-secondary font-bold leading-snug;
-}
-
-h1 {
-  @apply text-xl;
-}
-h2 {
-  @apply text-lg;
-}
-h3 {
-  @apply text-base;
-}
-h4 {
-  @apply text-base;
-}
-h5 {
-  @apply text-sm;
-}
-h6 {
-  @apply text-sm;
-}
-a {
-  @apply text-black underline;
-}
+/* This file is loaded via nuxt.config.js. Here the Tailwind CSS libraries are loaded. */
+@import 'tailwindcss/base';
+@import './tailwind-base.scss';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

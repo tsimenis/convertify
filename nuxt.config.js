@@ -39,7 +39,7 @@ export default {
   ],
 
   tailwindcss: {
-    cssPath: '~/assets/styles/tailwind.css'
+    cssPath: '~assets/styles/tailwind.css'
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
