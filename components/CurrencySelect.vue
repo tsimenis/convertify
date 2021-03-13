@@ -1,138 +1,47 @@
 <template>
   <u-dropdown class="currency-select">
-    <template #button-content="slotProps">
-      <button class="currency-select-button" @click="handleButtonToggle($event, slotProps)">
-        <span>EUR - Euro</span>
-        <div>
-          <span>flag</span>
-          <span class="text-lg text-gray-400">
+    <template #button-content="{ toggle }">
+      <button class="currency-select-button" @click="handleButtonToggle($event, toggle)">
+        <span>
+          {{ selectedCurrency.code }} • {{ selectedCurrency.name }}
+        </span>
+        <div class="flex items-center">
+          <u-svg class="w-8 h-8 rounded-full overflow-hidden shadow-lg" :name="selectedCurrency.code.toLowerCase()" />
+          <span class="flex text-2xl text-gray-400 ml-2">
             <u-icon name="angle-down" />
           </span>
         </div>
       </button>
     </template>
-    <template #default>
+    <template #default="{ toggle }">
       <div class="currencies pt-2">
         <div class="px-6 mb-2">
           <div class="relative">
-            <span class="search-icon absolute left-0 top-0 text-gray-200">
+            <span class="search-icon absolute left-0 top-0 text-gray-400">
               <u-icon name="search" />
             </span>
             <input
               ref="search"
+              v-model="searchQuery"
               type="text"
               class="w-full focus:outline-none px-6 py-2 text-sm"
               placeholder="Search currency"
             >
           </div>
         </div>
-        <ul class="currencies-list h-80 overflow-y-auto">
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
+        <ul class="currencies-list max-h-80 overflow-y-auto">
+          <li
+            v-for="currency in filteredCurrencies"
+            :key="currency.code"
+            class="flex justify-between px-6 py-4 hover:bg-gray-100 cursor-pointer"
+            @click="handleCurrencySelect($event, toggle, currency.code)"
+          >
+            <div class="flex items-center">
+              <u-svg class="w-8 h-8 rounded-full overflow-hidden mr-4" :name="currency.code.toLowerCase()" />
+              <span>{{ currency.name }}</span>
             </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
-            </span>
-          </li>
-          <li class="flex justify-between px-6 py-4 hover:bg-gray-100">
-            <div>
-              <span>flag</span>
-              <span>name</span>
-            </div>
-            <span>
-              code
+            <span class="text-gray-400">
+              {{ currency.code }}
             </span>
           </li>
         </ul>
@@ -144,17 +53,45 @@
 <script>
 
   import UDropdown from '@/components/UDropdown'
+  import { mapGetters } from 'vuex'
 
   export default {
     components: {
       UDropdown
     },
+    data () {
+      return {
+        selectedCode: '',
+        searchQuery: ''
+      }
+    },
+    computed: {
+      ...mapGetters(['availableCurrencies']),
+      filteredCurrencies () {
+        const currenciesArray = Object.values(this.availableCurrencies)
+        return currenciesArray.filter((currency) => {
+          return currency.code.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+            currency.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        })
+      },
+      selectedCurrency () {
+        let code = this.selectedCode
+        if (!code) {
+          code = Object.keys(this.availableCurrencies)[0]
+        }
+        return this.availableCurrencies[code]
+      }
+    },
     methods: {
-      handleButtonToggle (e, slotProps) {
-        slotProps.toggle(e)
+      handleButtonToggle (e, toggle) {
+        toggle(e)
         this.$nextTick(() => {
           this.$refs.search.focus()
         })
+      },
+      handleCurrencySelect (e, toggle, code) {
+        toggle(e)
+        this.selectedCode = code
       }
     }
   }
@@ -174,7 +111,7 @@
   }
 
   .currency-select-button {
-    @apply w-full flex justify-between pb-4 border-b border-gray-200;
+    @apply w-full flex items-center justify-between pb-4 border-b border-gray-200;
 
     &:focus {
       @apply outline-none;

@@ -120,7 +120,12 @@ module.exports = {
       '4xl': '2.25rem',
       '5xl': '3rem',
       '6xl': '4rem'
-    }
+    },
+    maxHeight: {
+      full: '100%',
+      screen: '100vh',
+      80: '20rem'
+    },
   },
   variants: {},
   plugins: []

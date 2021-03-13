@@ -42,7 +42,7 @@
     }
 
     svg path {
-      stroke: currentColor;
+      fill: currentColor;
     }
 
     .icon-error {
