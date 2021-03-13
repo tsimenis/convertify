@@ -23,7 +23,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/global-components'
+    '~/plugins/global-components',
+    '~/plugins/init.client'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -50,7 +51,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseUrl: 'https://api.exchangeratesapi.io/'
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
