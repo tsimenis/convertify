@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">convertify</h1>
+  <div class="container bg-gray-700">
+    <div class="bg-gray-200">
+      <u-svg class="w-12" name="chevron-down" />
+      <u-icon name="chevron-down" />
+      <h1 class="title">
+        Convertify
+      </h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -30,39 +33,9 @@
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-@apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+  .container {
+    @apply min-h-screen flex justify-center items-center text-center mx-auto;
+  }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
