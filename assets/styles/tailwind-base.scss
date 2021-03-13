@@ -1,0 +1,5 @@
+/* This file is loaded via nuxt.config.js. Here the Tailwind CSS libraries are loaded. */
+@import 'tailwindcss/base';
+@import './tailwind-base.scss';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';

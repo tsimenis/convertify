@@ -14,7 +14,12 @@
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "node-sass": "^5.0.0",
+    "nuxt": "^2.14.12",
+    "nuxt-webfontloader": "^1.1.0",
+    "sass-loader": "^10.1.1",
+    "svg-inline-loader": "^0.8.2",
+    "svgo-loader": "^3.0.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",
