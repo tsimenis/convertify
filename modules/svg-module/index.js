@@ -34,7 +34,7 @@ module.exports = function (options) {
           ]
         },
         {
-          use: 'url-loader'
+          use: 'file-loader'
         }
       ]
     })

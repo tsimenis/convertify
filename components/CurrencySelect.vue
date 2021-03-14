@@ -7,7 +7,11 @@
         </span>
         <span v-else></span>
         <div class="flex items-center">
-          <u-svg v-if="selectedCurrency" class="w-8 h-8 rounded-full overflow-hidden shadow-lg" :name="selectedCurrency.code.toLowerCase()" />
+          <img
+            v-if="selectedCurrency"
+            :src="require(`~/assets/img/${selectedCurrency.code.toLowerCase()}.svg`)"
+            class="w-8 h-8 rounded-full overflow-hidden shadow-lg"
+          >
           <span class="flex text-2xl text-gray-400 ml-2">
             <u-icon name="angle-down" />
           </span>
@@ -38,7 +42,10 @@
             @click="handleCurrencySelect($event, toggle, currency.code)"
           >
             <div class="flex items-center">
-              <u-svg class="w-8 h-8 rounded-full overflow-hidden mr-4" :name="currency.code.toLowerCase()" />
+              <img
+                :src="require(`~/assets/img/${currency.code.toLowerCase()}.svg`)"
+                class="w-8 h-8 rounded-full overflow-hidden mr-4"
+              >
               <span>{{ currency.name }}</span>
             </div>
             <span class="text-gray-400">
