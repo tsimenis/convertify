@@ -5,10 +5,12 @@
     </span> -->
     <input
       type="text"
-      inputmode="decimal"
+      inputmode="numeric"
+      pattern="[0-9]*"
       maxlength="9"
       :value="value"
       class="w-full py-4 md:py-8  font-light focus:outline-none"
+      @keydown="inputMask"
       @input="$emit('input', $event.target.value)"
     >
   </div>
@@ -24,6 +26,16 @@
       value: {
         type: Number,
         default: 0
+      }
+    },
+    methods: {
+      inputMask (e) {
+        // TODO: this prevents copying and selecting all
+        // a regex would be a better validation(?)
+        const charCode = (e.which) ? e.which : e.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+          e.preventDefault()
+        }
       }
     }
   }
