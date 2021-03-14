@@ -1,17 +1,19 @@
 import Vue from 'vue'
 import commonCurrency from '@/utils/common-currency'
 
+const defaultConversions = [
+  {
+    code: 'EUR',
+    value: 1
+  },
+  {
+    code: 'USD',
+    value: 1
+  }
+]
+
 export const state = () => ({
-  conversions: [
-    {
-      code: 'EUR',
-      value: 1
-    },
-    {
-      code: 'USD',
-      value: 1
-    }
-  ],
+  conversions: [],
   lastUpdate: null,
   loading: true,
   data: {}
@@ -27,6 +29,9 @@ export const mutations = {
   SET_LOADING (state, value) {
     state.loading = value
   },
+  SET_CONVERSIONS (state, conversions) {
+    state.conversions = conversions
+  },
   ADD_CONVERSION (state) {
     state.conversions.push({ code: null, value: null })
   },
@@ -36,10 +41,12 @@ export const mutations = {
   UPDATE_CONVERSIONS (state, { index, code }) {
     const obj = Object.assign(state.conversions[index], { code })
     Vue.set(state.conversions, index, obj)
+    localStorage.setItem('userOptions', JSON.stringify(state.conversions))
   },
   UPDATE_CONVERSION_VALUE (state, { index, value }) {
     const obj = Object.assign(state.conversions[index], { value })
     Vue.set(state.conversions, index, obj)
+    localStorage.setItem('userOptions', JSON.stringify(state.conversions))
   }
 }
 
@@ -79,7 +86,10 @@ export const getters = {
 }
 
 export const actions = {
-  async nuxtClientInit ({ dispatch }) {
+  async nuxtClientInit ({ commit, dispatch }) {
+    const userOptions = localStorage.getItem('userOptions') ? JSON.parse(localStorage.getItem('userOptions')) : false
+    const initialOptions = userOptions || defaultConversions
+    commit('SET_CONVERSIONS', initialOptions)
     await dispatch('getRates')
   },
   async getRates ({ commit }, code) {
