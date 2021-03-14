@@ -1,5 +1,5 @@
 <template>
-  <div class="view view-home">
+  <div class="view view-home min-h-screen">
     <home-hero />
     <currency-converter />
   </div>

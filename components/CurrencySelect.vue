@@ -2,11 +2,12 @@
   <u-dropdown class="currency-select">
     <template #button-content="{ toggle }">
       <button class="currency-select-button" @click="handleButtonToggle($event, toggle)">
-        <span>
+        <span v-if="selectedCurrency">
           {{ selectedCurrency.code }} • {{ selectedCurrency.name }}
         </span>
+        <span v-else></span>
         <div class="flex items-center">
-          <u-svg class="w-8 h-8 rounded-full overflow-hidden shadow-lg" :name="selectedCurrency.code.toLowerCase()" />
+          <u-svg v-if="selectedCurrency" class="w-8 h-8 rounded-full overflow-hidden shadow-lg" :name="selectedCurrency.code.toLowerCase()" />
           <span class="flex text-2xl text-gray-400 ml-2">
             <u-icon name="angle-down" />
           </span>
@@ -59,9 +60,14 @@
     components: {
       UDropdown
     },
+    props: {
+      code: {
+        type: String,
+        default: ''
+      }
+    },
     data () {
       return {
-        selectedCode: '',
         searchQuery: ''
       }
     },
@@ -75,11 +81,7 @@
         })
       },
       selectedCurrency () {
-        let code = this.selectedCode
-        if (!code) {
-          code = Object.keys(this.availableCurrencies)[0]
-        }
-        return this.availableCurrencies[code]
+        return this.availableCurrencies[this.code]
       }
     },
     methods: {
@@ -91,7 +93,7 @@
       },
       handleCurrencySelect (e, toggle, code) {
         toggle(e)
-        this.selectedCode = code
+        this.$emit('update', code)
       }
     }
   }

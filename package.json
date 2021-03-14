@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "analyze": "nuxt build --analyze",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/date-fns": "^1.4.3",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
     "node-sass": "^5.0.0",
@@ -19,7 +21,8 @@
     "nuxt-webfontloader": "^1.1.0",
     "sass-loader": "^10.1.1",
     "svg-inline-loader": "^0.8.2",
-    "svgo-loader": "^2.2.1"
+    "svgo-loader": "^2.2.1",
+    "vuejs-datepicker": "^1.6.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

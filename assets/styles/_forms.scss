@@ -1,0 +1,55 @@
+.vdp-datepicker {
+  input {
+    @apply text-sm border border-gray-200 px-4 py-2;
+  }
+
+  .vdp-datepicker__calendar {
+    top: calc(100% + 4px);
+    right: 0;
+    @apply border-gray-200;
+
+    .cell {
+      height: 32px;
+      line-height: 32px;
+      padding: 0;
+      border: none;
+    }
+
+    .cell.disabled {
+      @apply text-gray-300;
+    }
+
+    .cell.today {
+      @apply text-green-500;
+    }
+
+    .cell.selected {
+      @apply bg-green-500 text-white;
+
+      &:hover {
+        @apply bg-green-600;
+        border: none;
+      }
+
+    }
+
+    .cell:not(.blank):not(.disabled).day:hover,
+    .cell:not(.blank):not(.disabled).month:hover,
+    .cell:not(.blank):not(.disabled).year:hover
+    {
+      border: none;
+    }
+
+    .cell:not(.selected):not(.blank):not(.disabled).day:hover {
+      @apply bg-green-500 text-white;
+    }
+
+  }
+
+}
+
+input {
+  &:focus {
+    @apply outline-none;
+  }
+}

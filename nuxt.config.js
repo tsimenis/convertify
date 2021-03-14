@@ -36,7 +36,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
-    '~/modules/svg-module'
+    '~/modules/svg-module',
+    '@nuxtjs/date-fns'
   ],
 
   tailwindcss: {

@@ -1,0 +1,13 @@
+.button {
+  @apply w-full bg-green-500 text-white text-center py-4;
+  transition: background-color .25s ease-out;
+
+  &:hover {
+    @apply bg-green-600;
+  }
+
+  &:focus {
+    @apply outline-none;
+  }
+
+}
