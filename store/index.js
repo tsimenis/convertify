@@ -37,6 +37,7 @@ export const mutations = {
   },
   REMOVE_CONVERSION (state, index) {
     state.conversions.splice(index, 1)
+    localStorage.setItem('userOptions', JSON.stringify(state.conversions))
   },
   UPDATE_CONVERSIONS (state, { index, code }) {
     const obj = Object.assign(state.conversions[index], { code })
