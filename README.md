@@ -7,7 +7,7 @@
 - LocalStorage to keep the user's choice on refresh
 
 ## Notes
-- Downloaded flags are way too large in filesize, increasing the js bundle.
+- ~~Downloaded flags are way too large in filesize, increasing the js bundle.~~ Reverted to importing them as images, that way they are not included in the bundled and the dom size is reduced as well.
 - Conversions could be improved, now there are two values, the "internal" and the conversion. I was going to fix this while also doing bidirectional conversion, but not enough time.
 
 
