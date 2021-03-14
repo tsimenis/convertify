@@ -40,9 +40,6 @@ export const mutations = {
   UPDATE_CONVERSION_VALUE (state, { index, value }) {
     const obj = Object.assign(state.conversions[index], { value })
     Vue.set(state.conversions, index, obj)
-  },
-  UPDATE_CONVERSION_VALUES (state, conversions) {
-    state.conversions = conversions
   }
 }
 
@@ -95,7 +92,9 @@ export const actions = {
       commit('SET_DATA', data)
       const date = new Date()
       commit('SET_LAST_UPDATE', date)
-      // fake loader
+      // TODO: Api responses seems to be heavily cached
+      // this is a fake loader to actually make the user
+      // trust that something is loading/happening
       setTimeout(() => {
         commit('SET_LOADING', false)
       }, 500)
@@ -110,33 +109,14 @@ export const actions = {
       commit('SET_DATA', data)
       const date = new Date()
       commit('SET_LAST_UPDATE', date)
-      // fake loader
+      // TODO: Api responses seems to be heavily cached
+      // this is a fake loader to actually make the user
+      // trust that something is loading/happening
       setTimeout(() => {
         commit('SET_LOADING', false)
       }, 500)
     } catch (e) {
       console.log(e)
     }
-  },
-  updateConversions ({ state, commit, getters }, { index, value }) {
-    commit('UPDATE_CONVERSION_VALUE', { index, value })
-    // console.log(state.conversions[index].value)
-    // const calculateFromBase = code => getters.rates[code] ? state.conversions[0].value * getters.rates[code] : null
-    // const calculateValue = code => getters.rates[code] ? state.conversions[0].value / getters.rates[code] : null
-    const calculateValue = (code, i) => {
-      if (index !== 0) {
-        return value / getters.rates[state.conversions[index].code]
-      }
-      if (i === 0) return state.conversions[0].value
-      return getters.rates[code] ? state.conversions[0].value * getters.rates[code] : null
-    }
-    const newValues = state.conversions.map((conversion, i) => {
-      return {
-        code: conversion.code,
-        value: calculateValue(conversion.code, i)
-      }
-    })
-    // console.log(newValues, value)
-    commit('UPDATE_CONVERSION_VALUES', newValues)
   }
 }

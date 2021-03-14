@@ -12,15 +12,3 @@
     </div>
   </div>
 </template>
-
-<script>
-  export default {}
-</script>
-
-<style lang="scss" scoped>
-
-  /* .home-hero {
-    background-image: linear-gradient(90deg, #0abf53, #078f3e)
-  } */
-
-</style>

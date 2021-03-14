@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed w-full z-10">
+  <header class="absolute w-full z-10">
     <div class="container py-4 px-8">
       <nuxt-link to="/" class="no-underline text-white">
         <h1>Convertify</h1>
@@ -7,8 +7,3 @@
     </div>
   </header>
 </template>
-
-<script>
-  export default {
-  }
-</script>
