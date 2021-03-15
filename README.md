@@ -9,6 +9,9 @@
 ## Notes
 - ~~Downloaded flags are way too large in filesize, increasing the js bundle.~~ Reverted to importing them as images, that way they are not included in the bundled and the dom size is reduced as well.
 - Conversions could be improved, now there are two values, the "internal" and the conversion. I was going to fix this while also doing bidirectional conversion, but not enough time.
+- Conversions could be simplified, doing the conversion on the component and not all of them through the store. Would also keep the state simpler.
+- Api functions should be written separately.
+- Use cents to deal with floating number precision.
 
 
 ## Build Setup
